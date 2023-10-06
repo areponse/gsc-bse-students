@@ -72,19 +72,47 @@ function register {
   register
 fi
 }
+
+#----------------------------------------Function to update a student record by ID
+function update_student() {
+    read -p "Enter student ID to update: " student_id
+    if grep -q "^\|[[:space:]]*$student_id[[:space:]]*\|" $file_path; then
+        read -p "Enter new email: " new_email
+        read -p "Enter new age: " new_age
+
+        #check if email is alu email or not
+        if [[ $email == *"@alustudent.com" ]]; then
+
+            # Use sed to update the record in-place
+            sed -i -E "s/^\|[[:space:]]*$student_id[[:space:]]*\|[[:space:]]*[^|]*[[:space:]]*\|[[:space:]]*[^|]*[[:space:]]*\|$/| $student_id | $new_age | $new_email |/" $file_path
+
+            echo "Student record updated."
+        else
+            #this is error reporting when user enter invalid alu email 
+            echo -e "\n\n**************** This is Not A valid ALU Student Email ****************\n\n"
+        fi
+    else
+        echo "Student with ID $student_id not found."
+    fi
+}
+
 #---------------------------------------Menu for program
 
 
 echo -e "\n\n Choose What You Want To Do With Our App\n"
 echo "1) add New Student"
+echo "2) Update Student"
 
 echo -e "\n"
 read -p "Enter Your choice Here: " choice
 echo -e "\n"
 
 case $choice in
-    1)
+    1) 
         register
+        ;;
+    2) 
+        update_student
         ;;
 
     *)
