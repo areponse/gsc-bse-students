@@ -80,16 +80,13 @@ function update_student() {
         read -p "Enter new email: " new_email
         read -p "Enter new age: " new_age
 
-        #check if email is alu email or not
-        if [[ $email == *"@alustudent.com" ]]; then
-
+        # Check if the new email is a valid ALU student email
+        if [[ $new_email == *"@alustudent.com" ]]; then
             # Use sed to update the record in-place
             sed -i -E "s/^\|[[:space:]]*$student_id[[:space:]]*\|[[:space:]]*[^|]*[[:space:]]*\|[[:space:]]*[^|]*[[:space:]]*\|$/| $student_id | $new_age | $new_email |/" $file_path
-
             echo "Student record updated."
         else
-            #this is error reporting when user enter invalid alu email 
-            echo -e "\n\n**************** This is Not A valid ALU Student Email ****************\n\n"
+            echo "Invalid email format. Please enter a valid ALU student email."
         fi
     else
         echo "Student with ID $student_id not found."
