@@ -1,0 +1,18 @@
+#!/bin/bash
+clear
+studentfile=./students-list_0923.txt
+clear
+echo "                            Delete record"
+echo "             -------------------------------------------"
+echo "            Please enter a student ID you want to remove."
+echo "------------------------------------------------------------------"
+ 1 35; echo "Student ID: "
+id2 20; read student_id
+id3 18; echo "Accept? (y)es or (n)o: "
+id4 30; read Accept
+if test $Accept = "y"
+then
+sed /$student_id/d $studentfile > f
+cp f $studentfile
+rm f
+fi
