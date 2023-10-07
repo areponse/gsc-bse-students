@@ -105,6 +105,19 @@ function update_student() {
     ./main.sh
 }
 
+#This is the function for displaying all emails
+function display_emails() {
+    echo -e "Student Emails:\n"
+    awk -F'|' 'NR > 2 { print $4 }' "$file_path"
+}
+
+#This is the function for exit program 
+function exit_program() {
+    echo -e "\n\nThank you for using the Student Management Program. Goodbye!\n"
+    exit 0
+}
+
+
 #---------------------------------------Menu for program
 
 
@@ -122,6 +135,12 @@ case $choice in
         ;;
     2) 
         update_student
+        ;;
+    3) 
+        display_emails
+        ;;
+    4) 
+        exit_program
         ;;
 
     *)
