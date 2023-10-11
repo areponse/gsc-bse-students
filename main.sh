@@ -119,7 +119,6 @@ function extract_and_sort_emails() {
 }
 #---------------------------------------Menu for program
 
-
 echo -e "\n\n Choose What You Want To Do With Our App\n"
 echo "1) add New Student"
 echo "2) Update Student"
