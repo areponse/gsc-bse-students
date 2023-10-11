@@ -123,6 +123,9 @@ case $choice in
     2) 
         update_student
         ;;
+    3)
+        extract_and_sort_emails
+	;;	    
     *)
         echo "Invalid choice Try again."
         ./main.sh
