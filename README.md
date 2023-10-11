@@ -1,1 +1,0 @@
-# gsc-bse-students
