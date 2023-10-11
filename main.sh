@@ -116,6 +116,7 @@ function extract_and_sort_emails() {
     # Display the sorted email addresses
     echo "Sorted Email Addresses:"
     cat sorted_emails.txt
+    ./main.sh
 }
 
 
