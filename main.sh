@@ -105,16 +105,34 @@ function update_student() {
     ./main.sh
 }
 
+# New function to extract and sort email addresses
+function extract_and_sort_emails() {
+    # Extract email addresses from the student list and store them in a new file
+    grep -oE '[[:alnum:]._%+-]+@[[:alnum:].-]+\.[[:alpha:].]{2,4}' "$studentfile" > emails.txt
+
+    # Sort the email addresses and store them in a new file
+    sort -u -o sorted_emails.txt emails.txt
+
+    # Display the sorted email addresses
+    echo "Sorted Email Addresses:"
+    cat sorted_emails.txt
+}
+
+
 #This is the function for displaying all emails
 function display_emails() {
     echo -e "Student Emails:\n"
     awk -F'|' 'NR > 2 { print $4 }' "$file_path"
+    ./main.sh
 }
 
 #This is the function for exit program 
 function exit_program() {
     echo -e "\n\nThank you for using the Student Management Program. Goodbye!\n"
+    load
+    clear
     exit 0
+  
 }
 
 
@@ -124,6 +142,10 @@ function exit_program() {
 echo -e "\n\n Choose What You Want To Do With Our App\n"
 echo "1) add New Student"
 echo "2) Update Student"
+echo "3) Extract and sort emails"
+echo "4) Display emails"
+echo "5) Exit the application"
+
 
 echo -e "\n"
 read -p "Enter Your choice Here: " choice
@@ -136,15 +158,21 @@ case $choice in
     2) 
         update_student
         ;;
+        
     3) 
+	extract_and_sort_emails
+	;;
+    4)
         display_emails
         ;;
-    4) 
+    5)
         exit_program
         ;;
 
-    *)
-        echo "Invalid choice Try again."
+    *)  
+	echo "Invalid choice Try again."
         ./main.sh
         ;;
+	 
 esac
+
