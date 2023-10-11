@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Specify the input text file containing email addresses
-input_file="input-file.txt"
+input_file="select-emails.sh"
 
 # Specify the output file to save the extracted email addresses
 output_file="student-emails.txt"
