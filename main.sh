@@ -73,12 +73,44 @@ function register {
 fi
 }
 
+#----------------------------------------Function to update a student record by ID
+function update_student() {
+    read -p "Enter student ID to update: " student_id
+    if grep -q "^\|[[:space:]]*$student_id[[:space:]]*\|" $file_path; then
+        read -p "Enter new email: " new_email
+        read -p "Enter new age: " new_age
+
+        # Check if the new email is a valid ALU student email
+        if [[ $new_email == *"@alustudent.com" ]]; then
+            # Use sed to update the record in-place while preserving the format
+            sed -E -i "s/^\|[[:space:]]*$student_id[[:space:]]*\|[[:space:]]*[^|]*[[:space:]]*\|[[:space:]]*[^|]*[[:space:]]*\|$/| $(printf "%-26s" "$student_id") | $(printf "%-26s" "$new_age") | $(printf "%-36s" "$new_email") |/" $file_path
+            echo -n "Student record updated."
+        else
+            echo "Invalid email format. Please enter a valid ALU student email."
+        fi
+    else
+        echo "Student with ID $student_id not found."
+    fi
+     #this is the load function im calling
+        load
+        #end of loading 
+
+        #this is to nitifiy a user that we are ruturning home
+        echo -e "\n\n returning to Home\n\n"
+        #this is the load function im calling
+        load
+        #end of loading
+    #end of loading 
+    clear
+    ./main.sh
+}
 
 #---------------------------------------Menu for program
 
 
 echo -e "\n\n Choose What You Want To Do With Our App\n"
 echo "1) add New Student"
+echo "2) Update Student"
 
 echo -e "\n"
 read -p "Enter Your choice Here: " choice
@@ -88,7 +120,9 @@ case $choice in
     1) 
         register
         ;;
-
+    2) 
+        update_student
+        ;;
     *)
         echo "Invalid choice Try again."
         ./main.sh
