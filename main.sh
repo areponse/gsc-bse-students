@@ -107,7 +107,7 @@ function update_student() {
 # New function to extract and sort email addresses
 function extract_and_sort_emails() {
     # Extract email addresses from the student list and store them in a new file
-    grep -oE '[[:alnum:]._%+-]+@[[:alnum:].-]+\.[[:alpha:].]{2,4}' "$studentfile" > emails.txt
+    grep -oE '[[:alnum:]._%+-]+@[[:alnum:].-]+\.[[:alpha:].]{2,4}' "$file_path" > emails.txt
 
     # Sort the email addresses and store them in a new file
     sort -u -o sorted_emails.txt emails.txt
@@ -115,7 +115,17 @@ function extract_and_sort_emails() {
     # Display the sorted email addresses
     echo "Sorted Email Addresses:"
     cat sorted_emails.txt
+
+    # Notify the user that the operation is complete
+    echo "Email addresses have been extracted and sorted."
+
+    # Return to the main menu
+    echo "Returning to the main menu..."
+    sleep 2
+    clear
+    ./main.sh
 }
+
 #---------------------------------------Menu for program
 
 
