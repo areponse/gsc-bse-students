@@ -128,3 +128,15 @@ case $choice in
         ./main.sh
         ;;
 esac
+
+#-------------------------Function to delete a student record by ID     function delete_student() {
+    read -p "Enter student ID to delete: " student_id
+    if grep -q "^\|[[:space:]]$student_id[[:space:]]\|" $file_path; then        # Use sed to delete the student record and the next line
+        sed -i -E "/^\|[[:space:]]$student_id[[:space:]]\|/,+1d" $file_path
+        echo "Student record with ID $student_id has been deleted."
+    else
+        echo "Student with ID $student_id not found."
+    }
+    # End of loading
+    clear
+    ./main.sh
