@@ -82,7 +82,7 @@ function update_student() {
 
         # Check if the new email is a valid ALU student email
         if [[ $new_email == *"@alustudent.com" ]]; then
-            # Use sed to update the record in-place while preserving the format
+            # Updating record in-place while preserving the format
             sed -E -i "s/^\|[[:space:]]*$student_id[[:space:]]*\|[[:space:]]*[^|]*[[:space:]]*\|[[:space:]]*[^|]*[[:space:]]*\|$/| $(printf "%-26s" "$student_id") | $(printf "%-26s" "$new_age") | $(printf "%-36s" "$new_email") |/" $file_path
             echo -n "Student record updated."
         else
