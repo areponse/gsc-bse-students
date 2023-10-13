@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env bash 
 #function for program loader
 function load {
             for i in {1..10}; do
