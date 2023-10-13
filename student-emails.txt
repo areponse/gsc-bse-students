@@ -4,4 +4,5 @@
 +----------------------------+----------------------------+-------------------------------------
 | 1                          | 1                          | as@alustudent.com                    |
 | 12                         | 12                         | sa@alustudent.com                    |
+| 21                         | 21                         | maru@alustudent.com                  |
 | student Id                 | Age                        | Email                                |
