@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #function for program loader
 function load {
-    #thi loop will loop up to 10 every after 0.1 sec we will display one dot
+    #thi loop will loop up to 10 every after 0.1  sec we will display one dot
             for i in {1..10}; do
               echo -n "."
               sleep 0.1
