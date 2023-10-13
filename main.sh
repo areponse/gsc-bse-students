@@ -86,12 +86,11 @@ function update_student() {
             sed -E -i "s/^\|[[:space:]]*$student_id[[:space:]]*\|[[:space:]]*[^|]*[[:space:]]*\|[[:space:]]*[^|]*[[:space:]]*\|$/| $(printf "%-26s" "$student_id") | $(printf "%-26s" "$new_age") | $(printf "%-36s" "$new_email") |/" $file_path
             echo -n "Student record updated."
         else
-            echo "Invalid email format. Please enter a valid ALU student email."
+            echo "Please enter a valid ALU student email."
         fi
     else
         echo "Student with ID $student_id not found."
     fi
-     #this is the load function im calling
         load
         #end of loading 
 
