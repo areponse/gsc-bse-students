@@ -204,7 +204,7 @@ echo "4) view all students"
 echo "5) extract and sort emails"
 echo "6) view extracted emails"
 echo "7) Backup file on online Serve"
-echo "8) Exit Program"
+echo "8) Exit Program" 
 
 echo -e "\n"
 read -p "Enter Your choice Here: (1-8) " choice
