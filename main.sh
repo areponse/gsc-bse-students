@@ -171,7 +171,7 @@ echo "1) add New Student"
 echo "2) Update Student"
 echo "3) delete student"
 echo "4) view all students"
-echo "3) extract and sort emails"
+echo "5) extract and sort emails"
 
 echo -e "\n"
 read -p "Enter Your choice Here: " choice
