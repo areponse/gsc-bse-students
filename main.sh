@@ -91,9 +91,9 @@ function update_student() {
     else
         echo "Student with ID $student_id not found."
     fi
-        load
-        echo -e "\n\n returning to Home\n\n"
-        load
+    load
+    echo -e "\n\n returning to Home\n\n"
+    load
     clear
     ./main.sh
 }
