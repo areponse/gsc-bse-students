@@ -94,7 +94,6 @@ function update_student() {
         load
 
         echo -e "\n\n returning to Home\n\n"
-        #this is the load function im calling
         load
     clear
     ./main.sh
