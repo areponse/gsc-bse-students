@@ -92,14 +92,11 @@ function update_student() {
         echo "Student with ID $student_id not found."
     fi
         load
-        #end of loading 
 
         #this is to nitifiy a user that we are ruturning home
         echo -e "\n\n returning to Home\n\n"
         #this is the load function im calling
         load
-        #end of loading
-    #end of loading 
     clear
     ./main.sh
 }
