@@ -8,6 +8,7 @@ function load {
     echo -e "100%\n"
 }
 
+
 # Configuration for variables
 source_directory="negpod_21-q1"
 username="2f05c1f8800b"
