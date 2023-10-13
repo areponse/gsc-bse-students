@@ -12,7 +12,7 @@ function load {
 echo -e "\n\n***************** Welcome To Bachelor of Software Engineering cohort list of students ***************\n"
 echo -n "Starting App "
             load
-file_path="students-list_0923.txt"
+file_path="students-list_0923.txt" 
 
 #----------------------------------------function To Register student
 function register {
