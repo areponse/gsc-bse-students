@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#function for program loader
+#function for program loading
 function load {
     #thi loop will loop up to 10 every after 0.1  sec we will display one dot
             for i in {1..10}; do
