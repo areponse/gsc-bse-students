@@ -92,7 +92,6 @@ function update_student() {
         echo "Student with ID $student_id not found."
     fi
         load
-
         echo -e "\n\n returning to Home\n\n"
         load
     clear
