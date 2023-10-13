@@ -163,14 +163,16 @@ clear
 fi
 }
 
+}
 #---------------------------------------Menu for program
-
 
 echo -e "\n\n Choose What You Want To Do With Our App\n"
 echo "1) add New Student"
 echo "2) Update Student"
 echo "3) delete student"
 echo "4) view all students"
+echo "3) extract and sort emails"
+
 echo -e "\n"
 read -p "Enter Your choice Here: " choice
 echo -e "\n"
@@ -183,11 +185,14 @@ case $choice in
         update_student
         ;;
     3)  
-	delete_student
-	;;
+	      delete_student
+	      ;;
     4)   
-	   view_student
-	   ;;
+	      view_student
+	      ;;
+    5)
+        extract_and_sort_emails
+	      ;;	    
     *)
         echo "Invalid choice Try again."
         ./main.sh
