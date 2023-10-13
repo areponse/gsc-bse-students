@@ -82,60 +82,135 @@ function update_student() {
 
         # Check if the new email is a valid ALU student email
         if [[ $new_email == *"@alustudent.com" ]]; then
-            # Use sed to update the record in-place while preserving the format
+            # Updating record in-place while preserving the format
             sed -E -i "s/^\|[[:space:]]*$student_id[[:space:]]*\|[[:space:]]*[^|]*[[:space:]]*\|[[:space:]]*[^|]*[[:space:]]*\|$/| $(printf "%-26s" "$student_id") | $(printf "%-26s" "$new_age") | $(printf "%-36s" "$new_email") |/" $file_path
             echo -n "Student record updated."
         else
-            echo "Invalid email format. Please enter a valid ALU student email."
+            echo "Please enter a valid ALU student email."
         fi
     else
         echo "Student with ID $student_id not found."
     fi
-     #this is the load function im calling
         load
-        #end of loading 
 
         #this is to nitifiy a user that we are ruturning home
         echo -e "\n\n returning to Home\n\n"
         #this is the load function im calling
         load
-        #end of loading
-    #end of loading 
     clear
     ./main.sh
 }
-# New function to extract and sort email addresses
-function extract_and_sort_emails() {
-    # Extract email addresses from the student list and store them in a new file
-    grep -oE '[[:alnum:]._%+-]+@[[:alnum:].-]+\.[[:alpha:].]{2,4}' "$file_path" > emails.txt
+#---------------------------------------function To Delete student
+function delete_student {
+    #get student Id
+    read -p "Enter The Student Id To Delete: " id
+    #check If file Exists To Avoid Errors
+    if [ -f "$file_path" ]; then
+    #use Grep To Search Student Id that matches the pattern
+        grep -E -n "^\|[[:space:]]*$id[[:space:]]*\|" "$file_path" | while read -r line; do
+        #lines matches including numbers and split them (with line numbers)
+            line_num=$(echo "$line" | cut -d ':' -f 1)
+            #delete the line that matched the search and the next line
+            sed -i "${line_num}d;$(($line_num+1))d" "$file_path"
+        done
+        echo "Deleted row with Student ID: $id"
 
-    # Sort the email addresses and store them in a new file
-    sort -u -o sorted_emails.txt emails.txt
+        echo -e "\n\n **** Preparing Your Preview **** \n\n"
+            load
+        #end of loading 
+        clear
+        view_student
+    else
+        echo "Error: File not found at path: $file_path"
+        echo -e "\n\n **** returning to Home ****\n\n"
+            load
+        #end of loading 
+        clear
+        ./main.sh
+    fi
 
-    # Display the sorted email addresses
-    echo "Sorted Email Addresses:"
-    cat sorted_emails.txt
-
-    # Notify the user that the operation is complete
-    echo "Email addresses have been extracted and sorted."
-
-    # Return to the main menu
-    echo "Returning to the main menu..."
-    sleep 2
-    clear
-    ./main.sh
 }
+function view_student {
+# Check if the file exists
+if [ -f "$file_path" ]; then
+#check if file is empty
+if [ -s "$file_path" ]; then
+#message
+echo -e "\n\n \t\t\t*** Viewing All Students ***\n\n\n"
+#display students
+cat "$file_path"
+#and also call restart the app for user to choice other
+./main.sh
+else
+echo "No Student Found. Try Adding New Students."
+echo -e "\n\n **** returning to Home **** \n\n"
+#call the load function
+load
+#clear everything and restart the app for user
+clear
+./main.sh
+fi
+else
+echo "File Not Found."
+echo -e "\n\n **** returning to Home **** \n\n"
+load
+clear
+./main.sh
+fi
 
+}
+function email_save {                                                                                                                
+    echo -n "Saving Emails in ASC"                                                                                                   
+    sleep 0.6                                                                                                                        
+    clear                                                                                                                            
+    ./select-emails.sh                                                                                                                 
+}                                                                                                                                      
+function view_email {                                                                                                                
+            #loading message                                                                                                         
+            echo -n "opening Emails preview in ASC Order";                                                                           
+            load                                                                                                                     
+ # End of loading                                                                                                                    
+            cat student-emails.txt                                                                                                           
+            ./main.sh                                                                                                                                                                                                                                                
+}
+#backup function                                                                                                                       
+function back_up {                                                                                                                     
+    read -p "Are Sure You Want To Backup Your data (Y or N) if you backup this data everything will be backed up and you wont be able \
+to run this program unless you go to online sever or backup directory : " opt                                                          
+                                                                                                                                       
+   if [ "$opt" == 'Y' ] || [ "$opt" == 'y' ]; then                                                                                     
+            echo -n "opening Backup";                                                                                                  
+            load                                                                                                                       
+    ./move-to-directory.sh                                                                                                             
+    else                                                                                                                               
+    echo $opt                                                                                                                          
+            echo -n "returning to home";                                                                                               
+            load                                                                                                                       
+    ./main.sh                                                                                                                          
+    fi                                                                                                                                 
+}
+function exit_main {                                                                                                                   
+    #send message for closing app                                                                                                      
+    echo -n "Closing App The App Wait For Seconds To Finsh"                                                                            
+    sleep 0.6                                                                                                                          
+    clear                                                                                                                              
+    #kill the main process                                                                                                           
+    pkill -f './main.sh'                                                                                                                                                                                                                                     
+}   
 #---------------------------------------Menu for program
-
 
 echo -e "\n\n Choose What You Want To Do With Our App\n"
 echo "1) add New Student"
 echo "2) Update Student"
-echo "3) extract_and_sort_emails
+echo "3) delete student"
+echo "4) view all students"
+echo "5) extract and sort emails"
+echo "6) view extracted emails"
+echo "7) Backup file on online Serve"
+echo "8) Exit Program"
 
 echo -e "\n"
-read -p "Enter Your choice Here: " choice
+read -p "Enter Your choice Here: (1-8) " choice
 echo -e "\n"
 
 case $choice in
@@ -145,11 +220,27 @@ case $choice in
     2) 
         update_student
         ;;
-    3)
-        extract_and_sort_emails
-	;;	    
+    3)  
+	      delete_student
+	      ;;
+    4)   
+	      view_student
+	      ;;
+    5)
+         email_save
+	 ;;
+    6)                                                                                                                                 
+      view_email                                                                                                                     
+      ;;                                                                                                                               
+    7)                                                                                                                                 
+        back_up                                                                                                                      
+        ;;                                                                                                                             
+    8)                                                                                                                                 
+        exit_main                                                                                                                    
+        ;; 
+	
     *)
-        echo "Invalid choice Try again."
+        echo "Invalid choice Try again. (1-8)"
         ./main.sh
         ;;
 esac
