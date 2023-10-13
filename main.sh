@@ -93,7 +93,6 @@ function update_student() {
     fi
         load
 
-        #this is to nitifiy a user that we are ruturning home
         echo -e "\n\n returning to Home\n\n"
         #this is the load function im calling
         load
