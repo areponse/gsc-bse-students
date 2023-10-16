@@ -57,7 +57,7 @@ Usage
 
 2. Execute the script:
    
-   ./main.sh
+   `./main.sh`
 
 
 
