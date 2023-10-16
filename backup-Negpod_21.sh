@@ -7,7 +7,7 @@ function load {
     done
     echo -e "100%\n"
 }
-
+ 
 
 # Configuration for variables
 DONII="negpod_21-q1"
