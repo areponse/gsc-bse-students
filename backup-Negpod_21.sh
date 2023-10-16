@@ -10,7 +10,7 @@ function load {
 
 
 # Configuration for variables
-source_directory="negpod_21-q1"
+DONII="negpod_21-q1"
 username="2f05c1f8800b"
 host="2f05c1f8800b.3be8ebfc.alu-cod.online"
 password="d4a1d225d0abda9549d8"
@@ -20,7 +20,7 @@ dest="summative/0923-2023S"
 sshpass -p "$password" ssh -o StrictHostKeyChecking=no "$username@$host" "mkdir -p /$dest"
 
 # Use rsync to backup the directory to the alu-cod.online server
-rsync -avz --delete -e "sshpass -p $password ssh -o StrictHostKeyChecking=no" "$source_directory" "$username@$host:/$dest"
+rsync -avz --delete -e "sshpass -p $password ssh -o StrictHostKeyChecking=no" "$DONII" "$username@$host:/$dest"
 
 echo -n "Backup completed. Ending Program ."
 load
