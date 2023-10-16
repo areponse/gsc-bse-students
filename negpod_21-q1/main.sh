@@ -9,7 +9,7 @@ function load {
             echo -e "100%\n"
 }
 #this is welcome message
-echo -e "\n\n***************** Welcome To Bachelor of Software Engineering cohort list of students ***************\n"
+echo -e "\n\n***************** Welcome to our page ***************\n"
 echo -n "Starting App "
             load
 file_path="students-list_0923.txt" 
