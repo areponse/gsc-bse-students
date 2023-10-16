@@ -52,7 +52,7 @@ Usage
 
 1. Clone the repository:
 
-   git clone https://github.com/areponse/gsc-bse-students.git
+   `git clone https://github.com/areponse/gsc-bse-students.git`
 
 
 2. Execute the script:
